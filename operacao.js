@@ -1,5 +1,5 @@
 import {createClient} from 'https://esm.sh/@supabase/supabase-js@2.49.4';
-import {setupPush} from './spx-push.js?v=140';
+import {setupPush} from './spx-push.js?v=141';
 const db=createClient('https://jbblmzoihmkevztdwbds.supabase.co','sb_publishable_65EbQLsH-TO7sldvcG0QrQ_rHOnAgFP');
 const $=id=>document.getElementById(id), msg=s=>$('message').textContent=s||'';
 const roleLabel=r=>({developer:'Desenvolvedor',manager:'Supervisor',supervisor:'Líder',analyst:'Analista',viewer:'Visualizador'}[r]||r||'Acesso por HUB');
