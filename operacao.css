@@ -8,3 +8,5 @@
 .config-entry{background:#39221b;color:#ffb9aa;border-color:#754331;font-weight:650}.access-tabs{display:flex;flex-wrap:wrap;gap:8px;border-bottom:1px solid #393939;padding-bottom:12px;margin-bottom:18px}.access-tab{width:auto;padding:10px 15px;font-size:13px;color:#cfcfcf;background:#272727;border:1px solid #3a3a3a;border-radius:7px}.access-tab[aria-pressed=true]{background:#41251e;color:#ffb9aa;border-color:#ee4d2d}.admin-state[data-state=reserved]{background:#243346;color:#a8cfff}.admin-view .admin-grid{grid-template-columns:minmax(220px,270px) minmax(0,1fr)}@media(max-width:1200px){.admin-view .admin-grid{grid-template-columns:1fr}}@media(max-width:760px){.access-tab{flex:1 1 auto}}
 
 .admin-state[data-state=preapproved]{background:#193d2d;color:#76e7ae}
+
+#background[aria-pressed=true]{border-color:#36b980;color:#86efac;background:#193d2d}#backgroundstatus{font-size:11px;color:#aaa;max-width:360px;margin:4px 0;text-align:right}.paneltop nav{flex-wrap:wrap}#installapp{white-space:nowrap}@media(max-width:760px){#backgroundstatus{text-align:left}}
