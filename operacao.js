@@ -61,8 +61,8 @@ function card(c,firstByTeam={},carry=false){
  if(c.fleet_analyst&&c.fleet_analyst===c.inventory_analyst)d.append(el('p','Ambas as equipes assumidas pelo mesmo responsável (atuação de gestão).'));
  if(carry)d.append(el('p','Pendência de dia anterior','mismatch'));
  for(const team of workTeams()){
- if(cancelReady&&eligible(c,team)&&c.status==='working'&&c[team+'_analyst']===me.id&&!c[team+'_validated']){
-  const cancel=btn('Cancelar atendimento • '+teamLabel(team),async()=>{if(!workTeams().includes(team))return;if(!confirm('Cancelar somente a ida de '+teamLabel(team)+' à bancada '+c.dock+'? O registro será mantido e a outra equipe, se solicitada, continuará o atendimento.'))return;await rpc('spx_team_cancel_as',{p_id:c.id,p_team:team});drafts.delete(c.id+':'+team);await load();});cancel.className='cancel-call secondary';d.append(cancel);
+ if(eligible(c,team)&&['waiting','working'].includes(c.status)&&(!c[team+'_analyst']||c[team+'_analyst']===me.id)&&!c[team+'_validated']){
+  const cancel=btn('Cancelar atendimento • '+teamLabel(team),async()=>{if(!workTeams().includes(team))return;if(!cancelReady)throw Error('Cancelamento ainda não disponível no banco. Execute a atualização SQL V1.4.6 e recarregue o portal.');if(!confirm('Cancelar somente a ida de '+teamLabel(team)+' à bancada '+c.dock+'? O registro será mantido e a outra equipe, se solicitada, continuará o atendimento.'))return;await rpc('spx_team_cancel_as',{p_id:c.id,p_team:team});drafts.delete(c.id+':'+team);await load();});cancel.className='cancel-call secondary';d.append(cancel);
  }
  if(firstByTeam[team]===c.id&&canClaim(c,team))d.append(btn('Assumir • '+teamLabel(team),async()=>{if(c[other(team)+'_analyst']===me.id&&!confirm('Você já assumiu a outra equipe. Confirme a atuação também em '+teamLabel(team)+'.'))return;await rpc('spx_team_claim_as',{p_id:c.id,p_team:team});await load();}));
  if(eligible(c,team)&&canWork()&&c.status==='working'&&c[team+'_analyst']===me.id&&(!c[team+'_validated']||mismatch)){
